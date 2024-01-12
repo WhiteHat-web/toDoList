@@ -1,12 +1,11 @@
 package com.example.springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -32,9 +31,12 @@ public class HomeController {
     }
 
     @PostMapping("/signupcheck")
+    @ResponseBody
     public ResponseEntity<String> signUp(@RequestBody People user){
         userRepository.save(user);
-        return ResponseEntity.ok("People signed up successfully!");
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Content-Type", "application/json")
+                .body("{\"message\": \"People signed up successfully!\"}");
     }
 
 }

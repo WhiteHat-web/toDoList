@@ -187,7 +187,6 @@
             password: password
         };
 
-        // Send a POST request to the Spring Boot backend
         fetch('http://localhost:8080/signupcheck', {
             method: 'POST',
             headers: {
@@ -197,21 +196,17 @@
         })
             .then(response => {
                 if (response.status === 204) {
-                    // Successful signup with no content, handle accordingly
                     console.log('User signed up successfully!');
-                    // You can redirect or perform other actions here
+                    window.location.replace('/login');
                 } else {
-                    // Parse JSON for other response statuses
                     return response.json();
                 }
             })
             .then(data => {
                 console.log('Success:', data);
-                // Handle success response from the server
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Handle error response from the server
             });
 
         return false;
