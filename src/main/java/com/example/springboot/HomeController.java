@@ -31,6 +31,11 @@ public class HomeController {
         return "signup";
     }
 
+    @GetMapping("/home")
+    public String showHomePage() {
+        return "home";
+    }
+
     @PostMapping("/signupcheck")
     @ResponseBody
     public ResponseEntity<String> signUp(@RequestBody People user){

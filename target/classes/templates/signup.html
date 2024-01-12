@@ -195,9 +195,9 @@
             body: JSON.stringify(userData)
         })
             .then(response => {
-                if (response.status === 204) {
+                if (response.status === 201) {
                     console.log('User signed up successfully!');
-                    window.location.replace('/login');
+                    window.location.href = '/login';
                 } else {
                     return response.json();
                 }
