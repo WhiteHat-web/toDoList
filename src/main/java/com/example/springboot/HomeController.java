@@ -16,8 +16,9 @@ public class HomeController {
     private UserRepository userRepository;
 
     @Autowired
-    public HomeController(UserService userService){
+    public HomeController(UserService userService, UserRepository userRepository){
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/login")
@@ -38,5 +39,22 @@ public class HomeController {
                 .header("Content-Type", "application/json")
                 .body("{\"message\": \"People signed up successfully!\"}");
     }
+
+    @PostMapping("/logincheck")
+    @ResponseBody
+    public ResponseEntity<String> loginCheck(@RequestBody People user) {
+        People existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+
+        if (existingUser != null) {
+            // User authenticated successfully
+            return ResponseEntity.ok("{\"message\": \"Login successful!\"}");
+        } else {
+            // Authentication failed
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .header("Content-Type", "application/json")
+                    .body("{\"message\": \"Invalid email or password\"}");
+        }
+    }
+
 
 }
