@@ -1,21 +1,18 @@
 package com.example.springboot;
 import jakarta.persistence.*;
-
-import java.util.UUID;
-
 @Entity
 @Table
 public class People {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String username;
     private String email;
     private String password;
 
-    public People(UUID userId, String username, String password, String email) {
-        this.userId = userId;
+    public People(Long id, String username, String password, String email) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -30,12 +27,12 @@ public class People {
 
     }
 
-    public UUID getId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(UUID userId) {
-        this.userId =userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

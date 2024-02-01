@@ -31,10 +31,10 @@ public class HomeController {
         return "signup";
     }
 
-    @GetMapping("/home")
-    public String showHomePage() {
-        return "home";
-    }
+//    @GetMapping("/tasksdisp")
+//    public String showHomePage() {
+//        return "tasksdisp";
+//    }
 
     @PostMapping("/signupcheck")
     @ResponseBody

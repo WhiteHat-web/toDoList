@@ -1,9 +1,11 @@
 package com.example.springboot;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 // import javax.persistence.Entity;
 // import javax.persistence.Id;
 // import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,39 +15,27 @@ public class Task {
 
     @Id
     private UUID taskId = UUID.randomUUID();
-    private UUID userId;
     private String title;
     private String description;
-
-    private Date dueDate=new Date();
+    private LocalDate dueDate;
     private String priority;
-
-    public UUID getUserId() {
-        return userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
-    public Task (String title, String description, Date dueDate, String priority, UUID userId){
-        this.taskId=UUID.randomUUID();
-        this.userId=userId;
+    public Task (String title, String description, LocalDate dueDate, String priority){
         this.title=title;
-        this.description= description;
+        this.description=description;
         this.dueDate=dueDate;
         this.priority=priority;
     };
-    public Task (String title, String description, String priority,UUID userId){
-        this.taskId=UUID.randomUUID();
-        this.userId=userId;
-        this.title=title;
-        this.description= description;
-        this.dueDate=new Date();
-        this.priority=priority;
-    };
+
+    public Task(UUID taskId, String title, String description, LocalDate dueDate, String priority) {
+        this.taskId = taskId;
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+
     public Task() {
-        this.taskId = UUID.randomUUID();
+       // this.taskId = UUID.randomUUID();
         // Additional initialization if needed
     };
     // Constructors, getters, and setters
@@ -59,36 +49,36 @@ public class Task {
         this.taskId = taskId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public Date getDueDate() {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDate getDueDate() {
         return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
     public String getPriority() {
         return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     // Setters and other methods
