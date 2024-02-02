@@ -76,6 +76,15 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -98,7 +107,10 @@
             <td th:text="${task.description}"></td>
             <td th:text="${task.dueDate}"></td>
             <td th:text="${task.priority}"></td>
-            <td><a class="update-btn" th:href="@{/updateTasks/{id}(id=${task.taskId})}">Update</a></td>
+            <td>
+                <a class="update-btn" th:href="@{/updateTasks/{id}(id=${task.taskId})}">Update</a>
+                <a class="delete-btn" th:href="@{/deleteTask/{id}(id=${task.taskId})}">Delete</a>
+            </td>
 
         </tr>
         </tbody>

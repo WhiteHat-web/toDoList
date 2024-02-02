@@ -46,7 +46,13 @@ public class Routes {
     public String saveTask(@ModelAttribute("existingTask") Task task){
         System.out.println(task.getTaskId());
         taskService.saveTask(task);
-        return "updateTask";
+        return "redirect:/tasksdisp";
+    }
+
+    @GetMapping("/deleteTask/{id}")
+    public String deleteTask(@PathVariable(value = "id") UUID id){
+        taskService.deleteTask(id);
+        return "redirect:/tasksdisp";
     }
 
     @GetMapping("/updateTasks/{id}")
@@ -57,6 +63,8 @@ public class Routes {
         model.addAttribute("existingTask", task);
         return "updateTask";
     }
+
+
 //    @PutMapping("updateTask")
 //    public String updateTask(){
 //        return "Task Updated Succesfully";

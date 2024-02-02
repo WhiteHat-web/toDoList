@@ -46,8 +46,8 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public String deleteTask() {
+    public void deleteTask(UUID id) {
         // Implement delete logic using taskRepository
-        return "Task deleted successfully!";
+        taskRepository.deleteById(id);
     }
 }
