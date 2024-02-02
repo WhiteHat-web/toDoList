@@ -98,7 +98,8 @@
             <td th:text="${task.description}"></td>
             <td th:text="${task.dueDate}"></td>
             <td th:text="${task.priority}"></td>
-            <td><button class="update-btn" th:href="@{/home}">Update</button></td>
+            <td><a class="update-btn" th:href="@{/updateTasks/{id}(id=${task.taskId})}">Update</a></td>
+
         </tr>
         </tbody>
     </table>

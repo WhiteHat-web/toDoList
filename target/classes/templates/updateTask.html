@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Updation</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+        }
+
+        form {
+            width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #6cb2eb;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%236cb2eb" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+        }
+
+        button {
+            background-color: #6cb2eb;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4e90cc;
+        }
+    </style>
+</head>
+<body>
+<form action="#" th:action="@{/saveTask}" th:object="${existingTask}" method="post">
+    <h2>Task Updation</h2>
+    <input type="hidden" th:field="*{taskId}" />
+    <label for="title">Title:</label>
+    <input type="text" th:field="*{title}" id="title" name="title" required />
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" th:field="*{description}" required />
+
+    <label for="dueDate">Date:</label>
+    <input type="date" id="dueDate" th:field="*{dueDate}" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" required />
+
+    <label for="priority">Priority:</label>
+    <input type="text" id="priority" name="priority" th:field="*{priority}" />
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

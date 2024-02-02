@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 //@RequestMapping("/")
@@ -14,10 +15,10 @@ public class Routes {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/listTask")
-    public Iterable<Task> listTask(){
-        return taskService.listTasks();
-    }
+//    @GetMapping("/listTask")
+//    public Iterable<Task> listTask(){
+//        return taskService.listTasks();
+//    }
 
     @GetMapping("/tasksdisp")
     public String showTasks(Model model) {
@@ -40,12 +41,28 @@ public class Routes {
         taskService.createTask(task);
         return "home";
     }
-    @PutMapping("updateTask")
-    public String updateTask(){
-        return "Task Updated Succesfully";
+
+    @PostMapping("/saveTask")
+    public String saveTask(@ModelAttribute("existingTask") Task task){
+        System.out.println(task.getTaskId());
+        taskService.saveTask(task);
+        return "updateTask";
     }
-    @DeleteMapping ("deleteTask")
-    public String deleteTask(){
-        return "Task deleted Succesfully!";
+
+    @GetMapping("/updateTasks/{id}")
+    public String updateTasks(@PathVariable ( value = "id") UUID id, Model model) {
+        Task task = taskService.getTaskbyId(id);
+        System.out.println(task.getTaskId());
+        System.out.println(task.getPriority());
+        model.addAttribute("existingTask", task);
+        return "updateTask";
     }
+//    @PutMapping("updateTask")
+//    public String updateTask(){
+//        return "Task Updated Succesfully";
+//    }
+//    @DeleteMapping ("deleteTask")
+//    public String deleteTask(){
+//        return "Task deleted Succesfully!";
+//    }
 }
