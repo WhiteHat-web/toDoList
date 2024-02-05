@@ -50,6 +50,5 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    // Implement UserDetails methods using user data
 }
 

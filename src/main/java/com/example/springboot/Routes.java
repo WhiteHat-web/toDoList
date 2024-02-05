@@ -45,7 +45,7 @@ public class Routes {
         System.out.println(task.getDescription());
         System.out.println(task.getPriority());
         taskService.createTask(task);
-        return "home";
+        return "redirect:/tasksdisp";
     }
 
     @PostMapping("/saveTask")

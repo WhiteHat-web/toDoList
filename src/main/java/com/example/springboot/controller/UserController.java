@@ -29,11 +29,6 @@ public class UserController {
     @Autowired
     private HttpSession httpSession;
 
-    @GetMapping("/signup")
-    public String showSignupPage() {
-        return "signup";
-    }
-
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
@@ -60,7 +55,7 @@ public class UserController {
     public String login(HttpServletRequest request, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
-            return "redirect:/signup";
+            return "redirect:/register";
         }
 
         String username = request.getParameter("username");
@@ -71,7 +66,7 @@ public class UserController {
             Authentication failed = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password));
             SecurityContextHolder.getContext().setAuthentication(failed);
-            return "redirect:/signup";
+            return "redirect:/register";
         } catch (BadCredentialsException e) {
             model.addAttribute("error", "Invalid username or password");
             return "login";

@@ -19,22 +19,34 @@ public class Task {
     private String title;
     private String description;
     private LocalDate dueDate;
+
+    private String status;
     private String priority;
-    public Task (String title, String description, LocalDate dueDate, String priority,UUID userId){
+    public Task (String title, String description, LocalDate dueDate, String priority,UUID userId, String status){
         this.title=title;
         this.description=description;
         this.dueDate=dueDate;
         this.priority=priority;
         this.userId=userId;
+        this.status=status;
     };
 
-    public Task(UUID taskId, String title, String description, LocalDate dueDate, String priority,UUID userId) {
+    public Task(UUID taskId, String title, String description, LocalDate dueDate, String priority,UUID userId, String status) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.userId=userId;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Task() {

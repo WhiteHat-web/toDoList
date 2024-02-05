@@ -90,11 +90,16 @@
     <input type="text" id="description" name="description" th:field="*{description}" required />
 
     <label for="dueDate">Date:</label>
-    <input type="date" id="dueDate" th:field="*{dueDate}" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" required />
+    <input type="text" id="dueDate" th:field="*{dueDate}" name="dueDate" pattern="\d{4}-\d{2}-\d{2}" required />
 
     <label for="priority">Priority:</label>
     <input type="text" id="priority" name="priority" th:field="*{priority}" />
-
+    <label for="status">Status:</label>
+    <select name="status" id="status" th:field="*{status}">
+        <option value="To-do">To-do</option>
+        <option value="In-progress">In-progress</option>
+        <option value="Done">Done</option>
+    </select>
     <button type="submit">Submit</button>
 </form>
 </body>

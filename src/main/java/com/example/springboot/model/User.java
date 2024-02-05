@@ -3,13 +3,15 @@ package com.example.springboot.model;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -20,7 +22,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(Long id, String username, String email, String password) {
+    public User(UUID id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -32,11 +34,11 @@ public class User {
     }
 
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

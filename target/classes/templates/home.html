@@ -93,7 +93,12 @@
 
     <label for="priority">Priority:</label>
     <input type="text" id="priority" name="priority" th:field="*{priority}" />
-
+    <label for="status">Status</label>
+    <select name="status" id="status">
+        <option value="To-do">To-do</option>
+        <option value="In-progress">In-progress</option>
+        <option value="Done">Done</option>
+    </select>
     <button type="submit">Submit</button>
 </form>
 </body>
