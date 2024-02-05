@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 //import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ import java.util.UUID;
 public class Routes {
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private HttpSession httpSession;
 
 //    @GetMapping("/listTask")
 //    public Iterable<Task> listTask(){
@@ -29,6 +33,8 @@ public class Routes {
     @GetMapping("/showTaskForm")
     public String showHomePage(Model model){
      //   Task Task = new Task();
+        String username = (String) httpSession.getAttribute("username");
+        model.addAttribute("username", username);
         model.addAttribute("Task", new Task());
         return "home";
     }
