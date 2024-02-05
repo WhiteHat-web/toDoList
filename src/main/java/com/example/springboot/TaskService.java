@@ -41,7 +41,9 @@ public class TaskService {
         }
         return task;
     }
-
+    public List<Task> getTaskByUserId(UUID userId){
+        return taskRepository.findTaskByUserId(userId);
+    }
     public void saveTask(Task task){
         taskRepository.save(task);
     }
